@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VirtuaTech - Système IA pour courtiers immobiliers</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #000000;
+      background-color: #ffffff;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: #000000;
+    }
+
+    .header-right {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .nav-link {
+      font-size: 15px;
+      color: #000000;
+      text-decoration: none;
+      cursor: pointer;
+      transition: opacity 0.3s;
+    }
+
+    .nav-link:hover {
+      opacity: 0.7;
+    }
+
+    .lang-toggle {
+      font-size: 13px;
+      color: #6b7280;
+      cursor: pointer;
+      user-select: none;
+      transition: color 0.3s;
+    }
+
+    .lang-toggle:hover {
+      color: #000000;
+    }
+
+    /* Hero Section */
+    .hero {
+      background-color: #ffffff;
+      padding: 80px 40px;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      border: 1px solid #000000;
+      border-radius: 24px;
+      padding: 10px 20px;
+      font-size: 13px;
+      color: #000000;
+      background-color: #ffffff;
+      margin-bottom: 30px;
+      font-weight: 600;
+    }
+
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: 34px;
+      font-weight: 600;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      color: #000000;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-subtitle {
+      font-size: 18px;
+      color: #6b7280;
+      margin-bottom: 40px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 30px;
+      border-radius: 6px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s;
+      border: none;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background-color: #000000;
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background-color: #1a1a1a;
+    }
+
+    .btn-secondary {
+      background-color: #ffffff;
+      color: #000000;
+      border: 2px solid #000000;
+    }
+
+    .btn-secondary:hover {
+      background-color: #f9f9f9;
+    }
+
+    .hero-trust {
+      font-size: 13px;
+      color: #9ca3af;
+      line-height: 1.6;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Social Proof Section */
+    .social-proof {
+      background-color: #f5f5f5;
+      padding: 80px 40px;
+      text-align: center;
+    }
+
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #000000;
+    }
+
+    .social-proof-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      margin-top: 60px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .proof-card {
+      text-align: center;
+      padding: 30px;
+    }
+
+    .proof-name {
+      font-size: 18px;
+      font-weight: 700;
+      color: #000000;
+      margin-bottom: 15px;
+    }
+
+    .proof-result {
+      font-size: 22px;
+      font-weight: 700;
+      color: #000000;
+      margin-bottom: 10px;
+    }
+
+    .proof-role {
+      font-size: 14px;
+      color: #6b7280;
+    }
+
+    /* How It Works Section */
+    .how-it-works {
+      background-color: #ffffff;
+      padding: 80px 40px;
+    }
+
+    .how-it-works-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .how-subtitle {
+      font-size: 18px;
+      color: #6b7280;
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+    }
+
+    .step {
+      display: flex;
+      gap: 30px;
+      align-items: flex-start;
+    }
+
+    .step-circle {
+      width: 60px;
+      height: 60px;
+      background-color: #000000;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-size: 22px;
+      font-weight: 700;
+      flex-shrink: 0;
+      font-family: 'Syne', sans-serif;
+    }
+
+    .step-content {
+      flex: 1;
+    }
+
+    .step-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #000000;
+      margin-bottom: 10px;
+    }
+
+    .step-description {
+      font-size: 16px;
+      color: #6b7280;
+      line-height: 1.6;
+    }
+
+    /* Pricing Section */
+    .pricing {
+      background-color: #ffffff;
+      padding: 80px 40px;
+    }
+
+    .pricing-intro {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .pricing-subtitle {
+      font-size: 18px;
+      color: #6b7280;
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .pricing-card {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 40px 30px;
+      background-color: #ffffff;
+      position: relative;
+    }
+
+    .pricing-card.popular {
+      background-color: #000000;
+      color: #ffffff;
+      border: none;
+      transform: scale(1.05);
+    }
+
+    .popular-badge {
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #ef4444;
+      color: #ffffff;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .card-name {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      margin-top: 10px;
+    }
+
+    .pricing-card.popular .card-name {
+      color: #ffffff;
+    }
+
+    .card-desc {
+      font-size: 14px;
+      color: #6b7280;
+      margin-bottom: 30px;
+      line-height: 1.5;
+    }
+
+    .pricing-card.popular .card-desc {
+      color: #d1d5db;
+    }
+
+    .card-price {
+      margin-bottom: 30px;
+    }
+
+    .price-setup {
+      font-size: 20px;
+      font-weight: 600;
+      font-family: 'Syne', sans-serif;
+      margin-bottom: 5px;
+    }
+
+    .price-monthly {
+      font-size: 20px;
+      font-weight: 600;
+      font-family: 'Syne', sans-serif;
+    }
+
+    .price-label {
+      font-size: 13px;
+      color: #9ca3af;
+      margin-top: 5px;
+    }
+
+    .pricing-card.popular .price-label {
+      color: #d1d5db;
+    }
+
+    .card-features {
+      list-style: none;
+      margin-bottom: 40px;
+    }
+
+    .card-feature {
+      font-size: 14px;
+      padding: 10px 0;
+      color: #6b7280;
+      line-height: 1.5;
+    }
+
+    .pricing-card.popular .card-feature {
+      color: #e5e7eb;
+    }
+
+    .card-feature::before {
+      content: "✓ ";
+      font-weight: 700;
+      color: #000000;
+      margin-right: 8px;
+    }
+
+    .pricing-card.popular .card-feature::before {
+      color: #ffffff;
+    }
+
+    .card-email {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      font-family: 'Inter', sans-serif;
+      background-color: #ffffff;
+      color: #000000;
+    }
+
+    .pricing-card.popular .card-email {
+      display: none;
+    }
+
+    .card-btn {
+      width: 100%;
+      padding: 14px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      margin-bottom: 20px;
+      transition: all 0.3s;
+    }
+
+    .card-btn-dark {
+      background-color: #000000;
+      color: #ffffff;
+    }
+
+    .card-btn-dark:hover {
+      background-color: #1a1a1a;
+    }
+
+    .card-btn-light {
+      background-color: #ffffff;
+      color: #000000;
+      border: 1px solid #000000;
+    }
+
+    .card-btn-light:hover {
+      background-color: #f9f9f9;
+    }
+
+    .card-footer {
+      font-size: 12px;
+      color: #9ca3af;
+      text-align: center;
+    }
+
+    .pricing-card.popular .card-footer {
+      color: #d1d5db;
+    }
+
+    /* FAQ Section */
+    .faq {
+      background-color: #ffffff;
+      padding: 80px 40px;
+    }
+
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq-title {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .accordion {
+      border-bottom: 1px solid #e5e7eb;
+      padding: 20px 0;
+    }
+
+    .accordion-header {
+      font-size: 16px;
+      font-weight: 700;
+      color: #000000;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+      transition: color 0.3s;
+    }
+
+    .accordion-header:hover {
+      color: #6b7280;
+    }
+
+    .accordion-toggle {
+      font-size: 20px;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s;
+    }
+
+    .accordion.active .accordion-toggle {
+      transform: rotate(180deg);
+    }
+
+    .accordion-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      color: #6b7280;
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    .accordion.active .accordion-body {
+      max-height: 500px;
+      padding-top: 20px;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #1a1a2e;
+      color: #ffffff;
+      padding: 60px 40px;
+      text-align: center;
+    }
+
+    .footer-brand {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #ffffff;
+    }
+
+    .footer-email {
+      font-size: 15px;
+      color: #9ca3af;
+      margin-bottom: 20px;
+    }
+
+    .footer-copyright {
+      font-size: 13px;
+      color: #9ca3af;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header {
+        padding: 15px 20px;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .hero h1 {
+        font-size: 26px;
+      }
+
+      .section-title {
+        font-size: 22px;
+      }
+
+      .social-proof-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .pricing-card.popular {
+        transform: scale(1);
+      }
+
+      .step {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">VirtuaTech</div>
+    <div class="header-right">
+      <a href="#pricing" class="nav-link" data-i18n="nav_pricing">Tarifs</a>
+      <div class="lang-toggle" id="langToggle">FR | EN</div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="badge" data-i18n="badge">Système IA pour courtiers</div>
+    <h1 data-i18n="hero_title">Le système IA qui génère et qualifie vos leads immobiliers 24/7</h1>
+    <p class="hero-subtitle" data-i18n="hero_subtitle">Gestion intelligente des leads, Agent IA répondant 24/7 à vos clients, séquences email/SMS automatiques, gestion complète des publicités Meta.</p>
+    <div class="hero-buttons">
+      <a href="#pricing" class="btn btn-primary" data-i18n="btn_pricing">Voir les offres</a>
+      <a href="#how-it-works" class="btn btn-secondary" data-i18n="btn_how">Comment ça marche</a>
+    </div>
+    <p class="hero-trust" data-i18n="hero_trust">À partir de 197$ setup + 97$/mois • Paiement sécurisé Stripe • Garantie 30 jours</p>
+  </section>
+
+  <!-- Social Proof Section -->
+  <section class="social-proof">
+    <h2 class="section-title" data-i18n="social_title">Résultats réels de nos clients</h2>
+    <div class="social-proof-grid">
+      <div class="proof-card">
+        <div class="proof-name">Rosibel</div>
+        <div class="proof-result" data-i18n="proof_rosibel">$1.5M en transactions</div>
+        <div class="proof-role" data-i18n="proof_rosibel_role">Courtière VQA</div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-name">JF Vinet</div>
+        <div class="proof-result" data-i18n="proof_jf">3-5 RDV par semaine</div>
+        <div class="proof-role" data-i18n="proof_jf_role">Système complètement automatisé</div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-name">Samuel</div>
+        <div class="proof-result" data-i18n="proof_samuel">3 RDV en 10 jours</div>
+        <div class="proof-role" data-i18n="proof_samuel_role">Démarrage rapide</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="how-it-works" id="how-it-works">
+    <div class="how-it-works-content">
+      <h2 class="section-title" style="text-align: center; margin-bottom: 20px;" data-i18n="how_title">Comment ça marche</h2>
+      <p class="how-subtitle" data-i18n="how_subtitle">3 étapes simples pour transformer votre gestion des leads.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-circle">1</div>
+          <div class="step-content">
+            <div class="step-title" data-i18n="step1_title">Setup complet</div>
+            <div class="step-description" data-i18n="step1_desc">Nous configurons votre GHL, Agent IA, séquences email/SMS et Meta Ads. 24-48h pour être opérationnel.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-circle">2</div>
+          <div class="step-content">
+            <div class="step-title" data-i18n="step2_title">Agent IA en action</div>
+            <div class="step-description" data-i18n="step2_desc">Vos leads reçoivent des réponses 24/7. Qualification automatique. Prise de RDV intégrée.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-circle">3</div>
+          <div class="step-content">
+            <div class="step-title" data-i18n="step3_title">Rapports & optimisation</div>
+            <div class="step-description" data-i18n="step3_desc">Tableaux de bord en temps réel. Rapports mensuels. Ajustements continus pour meilleur ROI.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="pricing" id="pricing">
+    <div class="pricing-intro">
+      <h2 class="section-title" data-i18n="pricing_title">Offres & Tarifs</h2>
+      <p class="pricing-subtitle" data-i18n="pricing_subtitle">Choisissez l'offre qui correspond à votre profil et à vos objectifs.</p>
+    </div>
+    <div class="pricing-grid">
+      <!-- Plan 1: CRM Pilote -->
+      <div class="pricing-card">
+        <div class="card-name" data-i18n="plan1_name">CRM Pilote</div>
+        <div class="card-desc" data-i18n="plan1_desc">Courtiers qui perdent des leads faute de suivi rapide</div>
+        <div class="card-price">
+          <div class="price-setup">$197</div>
+          <div class="price-label" data-i18n="setup_label">setup</div>
+          <div class="price-monthly" style="margin-top: 10px;">$97<span style="font-size: 18px;">/mois</span></div>
+        </div>
+        <ul class="card-features">
+          <li class="card-feature" data-i18n="plan1_f1">Sous-compte GHL VirtuaTech</li>
+          <li class="card-feature" data-i18n="plan1_f2">Agent IA 24/7</li>
+          <li class="card-feature" data-i18n="plan1_f3">3 séquences email/SMS automatiques</li>
+          <li class="card-feature" data-i18n="plan1_f4">Dashboard leads en temps réel</li>
+          <li class="card-feature" data-i18n="plan1_f5">Support email</li>
+        </ul>
+        <input type="email" class="card-email" placeholder="votre@email.com">
+        <button class="card-btn card-btn-dark" onclick="window.location.href='https://buy.stripe.com/cN28xN9cW2LnfJK6or'" data-i18n="plan1_btn">Démarrer avec CRM Pilote</button>
+        <div class="card-footer" data-i18n="card_footer">Paiement sécurisé • Garantie 30 jours</div>
+      </div>
+
+      <!-- Plan 2: Croissance (POPULAR) -->
+      <div class="pricing-card popular">
+        <div class="popular-badge" data-i18n="popular_badge">POPULAIRE</div>
+        <div class="card-name" data-i18n="plan2_name">Croissance</div>
+        <div class="card-desc" data-i18n="plan2_desc">Courtiers avec budget Meta 500-1500$/mois qui veulent déléguer</div>
+        <div class="card-price">
+          <div class="price-setup">$997</div>
+          <div class="price-label" data-i18n="setup_label">setup</div>
+          <div class="price-monthly" style="margin-top: 10px;">$497<span style="font-size: 18px;">/mois</span></div>
+        </div>
+        <ul class="card-features">
+          <li class="card-feature" data-i18n="plan2_f1">Tout CRM Pilote +</li>
+          <li class="card-feature" data-i18n="plan2_f2">Gestion complète Meta Ads</li>
+          <li class="card-feature" data-i18n="plan2_f3">2-3 créatives/mois</li>
+          <li class="card-feature" data-i18n="plan2_f4">Rapport mensuel</li>
+          <li class="card-feature" data-i18n="plan2_f5">1 call 30min/mois</li>
+          <li class="card-feature" data-i18n="plan2_f6">Support prioritaire 24h</li>
+        </ul>
+        <button class="card-btn card-btn-light" onclick="window.location.href='https://www.virtuatech.co/widget/bookings/revision-30minz2n2rh'" data-i18n="plan_call_btn">Réserver un appel</button>
+        <div class="card-footer" data-i18n="card_footer">Paiement sécurisé • Garantie 30 jours</div>
+      </div>
+
+      <!-- Plan 3: Partenaire Agence -->
+      <div class="pricing-card">
+        <div class="card-name" data-i18n="plan3_name">Partenaire Agence</div>
+        <div class="card-desc" data-i18n="plan3_desc">Top producteurs et équipes haute performance</div>
+        <div class="card-price">
+          <div class="price-setup">$1497</div>
+          <div class="price-label" data-i18n="setup_label">setup</div>
+          <div class="price-monthly" style="margin-top: 10px;">$1497<span style="font-size: 18px;">/mois</span></div>
+        </div>
+        <ul class="card-features">
+          <li class="card-feature" data-i18n="plan3_f1">Tout Croissance +</li>
+          <li class="card-feature" data-i18n="plan3_f2">5-6 créatives/mois</li>
+          <li class="card-feature" data-i18n="plan3_f3">GHL custom complet</li>
+          <li class="card-feature" data-i18n="plan3_f4">Agent IA calibré 100%</li>
+          <li class="card-feature" data-i18n="plan3_f5">Rapport hebdomadaire</li>
+          <li class="card-feature" data-i18n="plan3_f6">2 calls/mois</li>
+          <li class="card-feature" data-i18n="plan3_f7">Support prioritaire 4h</li>
+        </ul>
+        <input type="email" class="card-email" placeholder="votre@email.com">
+        <button class="card-btn card-btn-dark" onclick="window.location.href='https://www.virtuatech.co/widget/bookings/revision-30minz2n2rh'" data-i18n="plan_call_btn">Réserver un appel</button>
+        <div class="card-footer" data-i18n="card_footer">Paiement sécurisé • Garantie 30 jours</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq">
+    <div class="faq-container">
+      <h2 class="section-title faq-title" data-i18n="faq_title">Questions fréquentes</h2>
+
+      <div class="accordion active">
+        <div class="accordion-header">
+          <span data-i18n="faq_q1">Comment fonctionne l'Agent IA?</span>
+          <span class="accordion-toggle">▼</span>
+        </div>
+        <div class="accordion-body" data-i18n="faq_a1">Votre Agent IA répond 24/7 aux messages sur Meta/WhatsApp/SMS. Il qualifie les leads, gère les objections et prend les RDV automatiquement.</div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">
+          <span data-i18n="faq_q2">Est-ce que je garde mes leads?</span>
+          <span class="accordion-toggle">▼</span>
+        </div>
+        <div class="accordion-body" data-i18n="faq_a2">Oui. Tous les leads sont dans votre GHL. Vous êtes propriétaire à 100% de vos données.</div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">
+          <span data-i18n="faq_q3">Combien de temps pour être opérationnel?</span>
+          <span class="accordion-toggle">▼</span>
+        </div>
+        <div class="accordion-body" data-i18n="faq_a3">CRM Pilote: 24-48h. Croissance & Partenaire: 3-5 jours avec setup complet Meta Ads.</div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">
+          <span data-i18n="faq_q4">Support? Qui m'aide en cas de problème?</span>
+          <span class="accordion-toggle">▼</span>
+        </div>
+        <div class="accordion-body" data-i18n="faq_a4">CRM Pilote: Email 24h. Croissance: Call 30min/mois + email. Partenaire: 2 calls/mois + support 4h.</div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">
+          <span data-i18n="faq_q5">Et si ça ne marche pas?</span>
+          <span class="accordion-toggle">▼</span>
+        </div>
+        <div class="accordion-body" data-i18n="faq_a5">Garantie 30 jours. Remboursement intégral, sans questions.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-brand" data-i18n="footer_brand">VirtuaTech Media</div>
+    <div class="footer-email"><a href="mailto:infos@virtuatech.co" style="color: inherit; text-decoration: none;">infos@virtuatech.co</a></div>
+    <div class="footer-copyright" data-i18n="footer_copyright">© 2026 VirtuaTech. Tous droits réservés.</div>
+  </footer>
+
+  <script>
+    // Translations
+    const translations = {
+      fr: {
+        nav_pricing: "Tarifs",
+        badge: "Système IA pour courtiers",
+        hero_title: "Le système IA qui génère et qualifie vos leads immobiliers 24/7",
+        hero_subtitle: "Gestion intelligente des leads, Agent IA répondant 24/7 à vos clients, séquences email/SMS automatiques, gestion complète des publicités Meta.",
+        btn_pricing: "Voir les offres",
+        btn_how: "Comment ça marche",
+        hero_trust: "À partir de 197$ setup + 97$/mois • Paiement sécurisé Stripe • Garantie 30 jours",
+        social_title: "Résultats réels de nos clients",
+        proof_rosibel: "$1.5M en transactions",
+        proof_rosibel_role: "Courtière VQA",
+        proof_jf: "3-5 RDV par semaine",
+        proof_jf_role: "Système complètement automatisé",
+        proof_samuel: "3 RDV en 10 jours",
+        proof_samuel_role: "Démarrage rapide",
+        how_title: "Comment ça marche",
+        how_subtitle: "3 étapes simples pour transformer votre gestion des leads.",
+        step1_title: "Setup complet",
+        step1_desc: "Nous configurons votre GHL, Agent IA, séquences email/SMS et Meta Ads. 24-48h pour être opérationnel.",
+        step2_title: "Agent IA en action",
+        step2_desc: "Vos leads reçoivent des réponses 24/7. Qualification automatique. Prise de RDV intégrée.",
+        step3_title: "Rapports & optimisation",
+        step3_desc: "Tableaux de bord en temps réel. Rapports mensuels. Ajustements continus pour meilleur ROI.",
+        pricing_title: "Offres & Tarifs",
+        pricing_subtitle: "Choisissez l'offre qui correspond à votre profil et à vos objectifs.",
+        plan1_name: "CRM Pilote",
+        plan1_desc: "Courtiers qui perdent des leads faute de suivi rapide",
+        setup_label: "setup",
+        plan1_f1: "Sous-compte GHL VirtuaTech",
+        plan1_f2: "Agent IA 24/7",
+        plan1_f3: "3 séquences email/SMS automatiques",
+        plan1_f4: "Dashboard leads en temps réel",
+        plan1_f5: "Support email",
+        plan1_btn: "Démarrer avec CRM Pilote",
+        plan2_name: "Croissance",
+        plan2_desc: "Courtiers avec budget Meta 500-1500$/mois qui veulent déléguer",
+        popular_badge: "POPULAIRE",
+        plan2_f1: "Tout CRM Pilote +",
+        plan2_f2: "Gestion complète Meta Ads",
+        plan2_f3: "2-3 créatives/mois",
+        plan2_f4: "Rapport mensuel",
+        plan2_f5: "1 call 30min/mois",
+        plan2_f6: "Support prioritaire 24h",
+        plan3_name: "Partenaire Agence",
+        plan3_desc: "Top producteurs et équipes haute performance",
+        plan3_f1: "Tout Croissance +",
+        plan3_f2: "5-6 créatives/mois",
+        plan3_f3: "GHL custom complet",
+        plan3_f4: "Agent IA calibré 100%",
+        plan3_f5: "Rapport hebdomadaire",
+        plan3_f6: "2 calls/mois",
+        plan3_f7: "Support prioritaire 4h",
+        plan_call_btn: "Réserver un appel",
+        card_footer: "Paiement sécurisé • Garantie 30 jours",
+        faq_title: "Questions fréquentes",
+        faq_q1: "Comment fonctionne l'Agent IA?",
+        faq_a1: "Votre Agent IA répond 24/7 aux messages sur Meta/WhatsApp/SMS. Il qualifie les leads, gère les objections et prend les RDV automatiquement.",
+        faq_q2: "Est-ce que je garde mes leads?",
+        faq_a2: "Oui. Tous les leads sont dans votre GHL. Vous êtes propriétaire à 100% de vos données.",
+        faq_q3: "Combien de temps pour être opérationnel?",
+        faq_a3: "CRM Pilote: 24-48h. Croissance & Partenaire: 3-5 jours avec setup complet Meta Ads.",
+        faq_q4: "Support? Qui m'aide en cas de problème?",
+        faq_a4: "CRM Pilote: Email 24h. Croissance: Call 30min/mois + email. Partenaire: 2 calls/mois + support 4h.",
+        faq_q5: "Et si ça ne marche pas?",
+        faq_a5: "Garantie 30 jours. Remboursement intégral, sans questions.",
+        footer_brand: "VirtuaTech Media",
+        footer_copyright: "© 2026 VirtuaTech. Tous droits réservés."
+      },
+      en: {
+        nav_pricing: "Pricing",
+        badge: "AI System for Real Estate Agents",
+        hero_title: "The AI System That Generates & Qualifies Your Real Estate Leads 24/7",
+        hero_subtitle: "Smart lead management, 24/7 AI Agent responding to your clients, automated email/SMS sequences, complete Meta Ads management.",
+        btn_pricing: "See Pricing",
+        btn_how: "How it works",
+        hero_trust: "From $197 setup + $97/month • Secure Stripe Payment • 30-Day Guarantee",
+        social_title: "Real Results From Our Clients",
+        proof_rosibel: "$1.5M in transactions",
+        proof_rosibel_role: "VQA Broker",
+        proof_jf: "3-5 appointments per week",
+        proof_jf_role: "Fully automated system",
+        proof_samuel: "3 appointments in 10 days",
+        proof_samuel_role: "Fast start",
+        how_title: "How It Works",
+        how_subtitle: "3 simple steps to transform your lead management.",
+        step1_title: "Complete Setup",
+        step1_desc: "We configure your GHL, AI Agent, email/SMS sequences and Meta Ads. 24-48h to be operational.",
+        step2_title: "AI Agent in Action",
+        step2_desc: "Your leads get 24/7 responses. Automatic qualification. Integrated appointment booking.",
+        step3_title: "Reports & Optimization",
+        step3_desc: "Real-time dashboards. Monthly reports. Continuous adjustments for best ROI.",
+        pricing_title: "Pricing",
+        pricing_subtitle: "Choose the plan that fits your profile and objectives.",
+        plan1_name: "Pilot CRM",
+        plan1_desc: "Agents losing leads due to slow follow-up",
+        setup_label: "setup",
+        plan1_f1: "GHL VirtuaTech sub-account",
+        plan1_f2: "24/7 AI Agent",
+        plan1_f3: "3 automated email/SMS sequences",
+        plan1_f4: "Real-time lead dashboard",
+        plan1_f5: "Email support",
+        plan1_btn: "Start with Pilot CRM",
+        plan2_name: "Growth",
+        plan2_desc: "Agents with $500-1500 Meta budget who want to delegate",
+        popular_badge: "POPULAR",
+        plan2_f1: "Everything in Pilot CRM +",
+        plan2_f2: "Complete Meta Ads management",
+        plan2_f3: "2-3 creatives/month",
+        plan2_f4: "Monthly report",
+        plan2_f5: "1 call 30min/month",
+        plan2_f6: "24h priority support",
+        plan3_name: "Agency Partner",
+        plan3_desc: "Top producers and high-performance teams",
+        plan3_f1: "Everything in Growth +",
+        plan3_f2: "5-6 creatives/month",
+        plan3_f3: "Complete custom GHL",
+        plan3_f4: "AI Agent calibrated 100%",
+        plan3_f5: "Weekly report",
+        plan3_f6: "2 calls/month",
+        plan3_f7: "4h priority support",
+        plan_call_btn: "Book a Call",
+        card_footer: "Secure Payment • 30-Day Guarantee",
+        faq_title: "Frequently Asked Questions",
+        faq_q1: "How does the AI Agent work?",
+        faq_a1: "Your AI Agent responds 24/7 to messages on Meta/WhatsApp/SMS. It qualifies leads, handles objections and books appointments automatically.",
+        faq_q2: "Do I keep my leads?",
+        faq_a2: "Yes. All leads are in your GHL. You own 100% of your data.",
+        faq_q3: "How long to get operational?",
+        faq_a3: "Pilot CRM: 24-48h. Growth & Partner: 3-5 days with full Meta Ads setup.",
+        faq_q4: "Who helps if there is a problem?",
+        faq_a4: "Pilot CRM: Email 24h. Growth: 30min call/month + email. Partner: 2 calls/month + 4h support.",
+        faq_q5: "What if it does not work?",
+        faq_a5: "30-day guarantee. Full refund, no questions asked.",
+        footer_brand: "VirtuaTech Media",
+        footer_copyright: "© 2026 VirtuaTech. All rights reserved."
+      }
+    };
+
+    let currentLang = 'fr';
+
+    // Language toggle
+    document.getElementById('langToggle').addEventListener('click', function() {
+      currentLang = currentLang === 'fr' ? 'en' : 'fr';
+      updateLanguage();
+      localStorage.setItem('language', currentLang);
+    });
+
+    // Update language function
+    function updateLanguage() {
+      document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        if (translations[currentLang][key]) {
+          element.textContent = translations[currentLang][key];
+        }
+      });
+      document.documentElement.lang = currentLang;
+      document.getElementById('langToggle').textContent = currentLang === 'fr' ? 'FR | EN' : 'EN | FR';
+    }
+
+    // Accordion functionality
+    document.querySelectorAll('.accordion-header').forEach(header => {
+      header.addEventListener('click', function() {
+        const accordion = header.closest('.accordion');
+        accordion.classList.toggle('active');
+      });
+    });
+
+    // Initialize language
+    const savedLang = localStorage.getItem('language');
+    if (savedLang) {
+      currentLang = savedLang;
+    }
+    updateLanguage();
+  </script>
+</body>
+</html>
